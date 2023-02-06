@@ -8,7 +8,7 @@ const LeaderboardPage = async () => {
     if (audio.paused) audio.play();
 
     const result = await fetch(`${process.env.API_BASE_URL}/leaderboard`, {
-        method: 'POST',
+        method: 'GET',
         headers: {
             'Content-Type': 'application/json',
         },

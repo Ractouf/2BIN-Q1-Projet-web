@@ -2,7 +2,7 @@
 
 ### Test 1.1 register the user
 # @name nitroc
-POST http://localhost:3000/auth/login
+POST {{baseUrl}}/auth/login
 Content-Type: application/json
 
 {
@@ -14,24 +14,24 @@ Content-Type: application/json
 @nitrocToken = {{nitroc.response.body.token}}
 
 ### Test 1.2 check his level
-POST http://localhost:3000/users/get
+POST {{baseUrl}}/users/get
 Content-Type: application/json
 Authorization: {{nitrocToken}}
 
 ### Test 2 test /get with a know user who has finished lvl 1, it should return level 2
 
 ###Test 2.1 get the user to finish the level 1
-POST http://localhost:3000/users/set
+POST {{baseUrl}}/users/set
 Content-Type: application/json
 Authorization: {{nitrocToken}}
 
 ###Test 2.2 check his level
-POST http://localhost:3000/users/get
+POST {{baseUrl}}/users/get
 Content-Type: application/json
 Authorization: {{nitrocToken}}
 
 ### Test with a know user
-POST http://localhost:3000/users/reset
+POST {{baseUrl}}/users/reset
 Content-Type: application/json
 
 {
@@ -39,7 +39,7 @@ Content-Type: application/json
 }
 
 ### Test with an unknow user
-POST http://localhost:3000/users/reset
+POST {{baseUrl}}/users/reset
 Content-Type: application/json
 
 {
@@ -47,7 +47,7 @@ Content-Type: application/json
 }
 
 ### Test with an empty user
-POST http://localhost:3000/users/reset
+POST {{baseUrl}}/users/reset
 Content-Type: application/json
 
 {

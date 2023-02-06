@@ -31,25 +31,25 @@ export default class Environment {
         let assets
         switch (level) {
             case 1:
-                assets = await Environment.loadAssetLevel1();
+                assets = await Environment.loadAssetLevel(level1, music5);
                 break;
             case 2:
-                assets = await Environment.loadAssetLevel2();
+                assets = await Environment.loadAssetLevel(level2, music2);
                 break;
             case 3:
-                assets = await Environment.loadAssetLevel3();
+                assets = await Environment.loadAssetLevel(level3, music3);
                 break;
             case 4:
-                assets = await Environment.loadAssetLevel4();
+                assets = await Environment.loadAssetLevel(level4, music4);
                 break;
             case 5:
-                assets = await Environment.loadAssetLevel5();
+                assets = await Environment.loadAssetLevel(level5, music5);
                 break;
             case 6:
-                assets = await Environment.loadAssetLevel6();
+                assets = await Environment.loadAssetLevel(level6, music6);
                 break;
             default:
-                assets = await Environment.loadAssetLevel1();
+                assets = await Environment.loadAssetLevel(level1, music5);
                 break;
         }
 
@@ -95,107 +95,16 @@ export default class Environment {
     }
 
     /**
-     * loads the mesh for the first level
+     * loads the mesh for the levels
      * @returns the environment and all the meshes
      */
-    static async loadAssetLevel1() {
-        const result = await SceneLoader.ImportMeshAsync(null, level1);
+    static async loadAssetLevel(level, music) {
+        const result = await SceneLoader.ImportMeshAsync(null, level);
         const env = result.meshes[0];
         const allMeshes = env.getChildMeshes();
 
         // eslint-disable-next-line
-        new Sound("music5", music5, this.scene, null, { loop: true, autoplay: true });
-
-        return {
-            env,
-            allMeshes
-        }
-    }
-
-    /**
-     * loads the mesh for the second level
-     * @returns the environment and all the meshes
-     */
-    static async loadAssetLevel2() {
-        const result = await SceneLoader.ImportMeshAsync(null, level2);
-        const env = result.meshes[0];
-        const allMeshes = env.getChildMeshes();
-
-        // eslint-disable-next-line
-        new Sound("music2", music2, this.scene, null, { loop: true, autoplay: true });
-
-
-        return {
-            env,
-            allMeshes
-        }
-    }
-
-    /**
-     * loads the mesh for the thrid level
-     * @returns the environment and all the meshes
-     */
-    static async loadAssetLevel3() {
-        const result = await SceneLoader.ImportMeshAsync(null, level3);
-        const env = result.meshes[0];
-        const allMeshes = env.getChildMeshes();
-
-        // eslint-disable-next-line
-        new Sound("music3", music3, this.scene, null, { loop: true, autoplay: true });
-
-        return {
-            env,
-            allMeshes
-        }
-    }
-
-    /**
-     * loads the mesh for the fourth
-     * @returns the environment and all the meshes
-     */
-    static async loadAssetLevel4() {
-        const result = await SceneLoader.ImportMeshAsync(null, level4);
-        const env = result.meshes[0];
-        const allMeshes = env.getChildMeshes();
-
-        // eslint-disable-next-line
-        new Sound("music4", music4, this.scene, null, { loop: true, autoplay: true });
-
-        return {
-            env,
-            allMeshes
-        }
-    }
-
-    /**
-     * loads the mesh for the fifth
-     * @returns the environment and all the meshes
-     */
-    static async loadAssetLevel5() {
-        const result = await SceneLoader.ImportMeshAsync(null, level5);
-        const env = result.meshes[0];
-        const allMeshes = env.getChildMeshes();
-
-        // eslint-disable-next-line
-        new Sound("music5", music5, this.scene, null, { loop: true, autoplay: true });
-
-        return {
-            env,
-            allMeshes
-        }
-    }
-
-    /**
-     * loads the mesh for the sixth
-     * @returns the environment and all the meshes
-     */
-    static async loadAssetLevel6() {
-        const result = await SceneLoader.ImportMeshAsync(null, level6);
-        const env = result.meshes[0];
-        const allMeshes = env.getChildMeshes();
-
-        // eslint-disable-next-line
-        new Sound("music6", music6, this.scene, null, { loop: true, autoplay: true });
+        new Sound("music", music, this.scene, null, { loop: true, autoplay: true });
 
         return {
             env,

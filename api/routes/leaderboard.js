@@ -11,7 +11,7 @@ const MAX_LEVEL = 6;
 /**
  * @returns the leaderboard sorted by time or an error if there is no time registered in the leaderboard
  */
-router.post('/', (req, res) => {
+router.get('/', (req, res) => {
     const leaderboard = parse(jsonDbPath);
 
     let newRepresentation = [];

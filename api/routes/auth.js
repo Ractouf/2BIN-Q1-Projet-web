@@ -1,6 +1,5 @@
 const express = require('express');
 const path = require("node:path");
-const Checker = require('password-checker');
 const { register, login } = require('../models/auth');
 const { parse } = require("../utils/json");
 
@@ -17,16 +16,9 @@ router.post('/register', async (req, res) => {
 
     if (!username || !password) return res.status(400).json({ error: 'Username or password missing !' }); // Bad Request
 
-    const checker = new Checker();
-    checker.min_length = 8;
-    checker.disallowPasswords(true, true, 3);
-
-
-    if (!checker.check(password)) {
-        return res.status(400).json({ error: 'Your password is not 8 characters long or is too weak !' });
-    }
-
     const users = parse(jsonDbPath);
+
+    if (password.length < 8) return res.status(400).json({ error: 'Password too short' });
 
     // eslint-disable-next-line consistent-return
     users.forEach((user) => {
